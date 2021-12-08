@@ -30,7 +30,6 @@ class WismaController extends Controller
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->editColumn('photo', function ($row){
-                    $foto = asset('photo/');
                     return '<image style="width: 150px; height: 150px;"  src="'.$foto.'" alt="">';
                 })
                 ->addColumn('action', function ($row) {
