@@ -29,6 +29,10 @@ class WismaController extends Controller
 
             return Datatables::of($data)
                 ->addIndexColumn()
+                ->editColumn('photo', function ($row){
+                    $foto = asset('photo/');
+                    return '<image style="width: 150px; height: 150px;"  src="'.$foto.'" alt="">';
+                })
                 ->addColumn('action', function ($row) {
                     return '
                             <a class="btn btn-success btn-sm btn-icon waves-effect waves-themed" href="' . route('wisma.edit', $row->uuid) . '"><i class="fal fa-edit"></i></a>
@@ -61,7 +65,7 @@ class WismaController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        // ddd($request);
         $rules = [
             'name' => 'required',
             'address' => 'required',
@@ -74,23 +78,22 @@ class WismaController extends Controller
         ];
 
         $this->validate($request, $rules, $messages);
-        // dd($request->all());
+        // dd($request->photo);
+
+        $photo = $request->photo;
+        $namafile = $photo->getClientOriginalName();
 
         $wisma = new Wisma();
         $wisma->name = $request->name;
         $wisma->address = $request->address;
         $wisma->telephone = $request->telephone;
+        $wisma->photo = $namafile;
 
-        $image = $request->file('photo');
-    
-        $imageName = time().'.'.$image->extension();
-        $image->move(public_path('images'),$imageName);
-    
-        return response()->json(['success'=>$imageName]);
-        
+        $photo->move(public_path().'/photo', $namafile);
+        $wisma->save();
 
-        // toastr()->success('New Wisma Added', 'Success');
-        // return redirect()->route('wisma.index');
+        toastr()->success('New Wisma Added', 'Success');
+        return redirect()->route('wisma.index');
     }
 
     /**

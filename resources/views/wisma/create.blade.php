@@ -4,9 +4,7 @@
 
 @section('css')
 <link rel="stylesheet" media="screen, print" href="{{asset('css/formplugins/select2/select2.bundle.css')}}">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
-     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
+<link rel="stylesheet" media="screen, print" href="{{asset('css/formplugins/dropzone/dropzone.css')}}">
 @endsection
 
 @section('content')
@@ -29,8 +27,8 @@
                     <div class="panel-tag">
                         Form with <code>*</code> can not be empty.
                     </div>
-                    {!! Form::open(['route' => 'wisma.store','method' => 'POST', 'enctype' => 'multipart/form-data', 'id' => 'image-upload', 'class' =>
-                    'dropzone','novalidate']) !!}
+                    {!! Form::open(['route' => 'wisma.store','id'=>'forms','method' => 'POST','class' =>
+                    'needs-validation','dropzone', 'forms','novalidate','enctype' => 'multipart/form-data']) !!}
                     <div class="form-group col-md-4 mb-3">
                         {{ Form::label('name','Wisma Name',['class' => 'required form-label'])}}
                         {{ Form::text('name',null,['placeholder' => 'Wisma Name','class' => 'form-control '.($errors->has('name') ? 'is-invalid':''),'required', 'autocomplete' => 'off'])}}
@@ -52,25 +50,13 @@
                         <div class="invalid-feedback">{{ $errors->first('telephone') }}</div>
                         @endif
                     </div>
-                    <!-- <div class="form-group">
-                        <div class="panel-hdr">
-                            <h2>Upload <span class="fw-300"><i>Photo</i></span></h2>
-                        </div>
-                        <div id="dropzones" class="dropzone">
-                            <div class="needsclick dz-message">
-                                <i class="fal fa-cloud-upload text-muted mb-3"></i> <br>
-                                <span class="text-uppercase">Tarik file foto kesini atau klik untuk upload.</span>
-                                <br>
-                                <span class="fs-sm text-muted">Anda dapat mengupload<strong> max. 5</strong> file
-                                    sekaligus</span>
-                                <br>
-                                <span class="fs-sm text-muted">file tidak boleh lebih dari<strong> 10mb</strong></span>
-                                <br>
-                                <span class="fs-sm text-muted">file yang diizinkan adalah<strong> jpg, jpeg,
-                                        png</strong></span>
-                            </div>
-                        </div>
-                    </div> -->
+                    <div class="form-group col-md-4 mb-3">
+                        {{ Form::label('photo','Photo',['class' => 'required form-label'])}}
+                        {{ Form::file('photo',null,['placeholder' => 'Photo','class' => 'form-control upload '.($errors->has('photo') ? 'is-invalid':''),'required', 'autocomplete' => 'off', 'name' => 'photo'])}}
+                        @if ($errors->has('photo'))
+                        <div class="invalid-feedback">{{ $errors->first('photo') }}</div>
+                        @endif
+                    </div>
                 <div
                     class="panel-content border-faded border-left-0 border-right-0 border-bottom-0 d-flex flex-row align-items-center">
                     <button class="btn btn-primary ml-auto" type="submit">Submit</button>
@@ -86,12 +72,42 @@
 <script src="{{asset('js/formplugins/select2/select2.bundle.js')}}"></script>
 <script src="{{asset('js/formplugins/dropzone/dropzone.js')}}"></script>
 <script>
+    Dropzone.autoDiscover = false;
+    Dropzone.autoProcessQueue = false;
+
     $(document).ready(function(){
 
-        Dropzone.options.imageUpload = {
-            maxFilesize         :       1,
-            acceptedFiles: ".jpeg,.jpg,.png,.gif"
-        };
+        var myDropzone = new Dropzone("#dropzones", { 
+
+        paramName: "photo",
+        url: "{{route('wisma.store')}}",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+                addRemoveLinks: true,
+                maxFiles: 5,
+                autoProcessQueue: false,
+                uploadMultiple: true,
+                parallelUploads:10,
+            });
+
+        $('#button').click(function (e){
+            e.preventDefault();
+            myDropzone.processQueue();
+        });
+
+        myDropzone.on("sendingmultiple", function(file,xhr,formData) {
+            var data = $('#forms').serializeArray();
+            console.log(data);
+            $.each(data, function(key, el) {
+                formData.append(el.name, el.value);
+            });
+        });
+
+        myDropzone.on("successmultiple", function(files, response) {
+        window.location.href = "{{route('wisma.index')}}";
+
+        });
     });
 </script>
 @endsection
