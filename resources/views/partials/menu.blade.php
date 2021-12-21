@@ -7,14 +7,32 @@
     </li>
     <li>
         <a href="{{route('room.index')}}" title="Room" data-filter-tags="room">
-            <i class="fal fa-room"></i>
+            <i class="fal fa-bed"></i>
             <span class="nav-link-text">Room</span>
         </a>
     </li>
     <li>
         <a href="{{route('wisma.index')}}" title="Wisma" data-filter-tags="wisma">
-            <i class="fal fa-room"></i>
+            <i class="fal fa-home"></i>
             <span class="nav-link-text">Wisma</span>
+        </a>
+    </li>
+    <li>
+        <a href="{{route('gallery.index')}}" title="Gallery" data-filter-tags="gallery">
+            <i class="fal fa-file-image"></i>
+            <span class="nav-link-text">Gallery</span>
+        </a>
+    </li>
+    <li>
+        <a href="{{route('about.index')}}" title="About Us" data-filter-tags="aboutus">
+            <i class="fal fa-list-alt"></i>
+            <span class="nav-link-text">About Us</span>
+        </a>
+    </li>
+    <li>
+        <a href="{{route('sosmed.index')}}" title="Social Media" data-filter-tags="socialmedia">
+            <i class="fal fa-address-card"></i>
+            <span class="nav-link-text">Social Media</span>
         </a>
     </li>
     @isset($menu)

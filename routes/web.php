@@ -41,6 +41,7 @@ Route::group(['prefix' => 'backoffice', 'middleware' => ['auth']], function () {
     Route::resource('roles', 'RoleController');
     Route::resource('room', 'RoomTypeController');
     Route::resource('wisma', 'WismaController');
-    Route::get('photo', [WismaController::class, 'index']);
-    Route::post('photo/store', [WismaController::class, 'store']);
+    Route::resource('gallery', 'GalleryController');
+    Route::resource('about', 'AboutController');
+    Route::resource('sosmed', 'SosmedController');
 });

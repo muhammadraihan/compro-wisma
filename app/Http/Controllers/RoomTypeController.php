@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\TypeRoom;
+use App\Models\Wisma;
 
 use Auth;
 use DataTables;
@@ -29,7 +30,29 @@ class RoomTypeController extends Controller
                 ->editColumn('id_wisma', function ($row) {
                     return $row->wisma->name;
                 })
-                
+                ->editColumn('photo', function($row){
+                    $url = asset('photo');
+                    return '<image style="width: 150px; height: 150px;"  src="'.$url.'/'.$row->photo.'" alt="">';
+                })
+                ->editColumn('price',function($row){
+                    return $row->price ? 'Rp.'.' '.number_format($row->price,2) : '' ;
+                })
+                ->editColumn('room_type', function($row){
+                    switch ($row->room_type) {
+                        case 'kamar-hotel' :
+                            return '<span class="badge badge-primary">Kamar Hotel</span>';
+                            break;
+                        case 'aula' :
+                            return '<span class="badge badge-primary">Aula</span>';
+                            break;
+                        case 'room-meeting' :
+                            return '<span class="badge badge-primary">Room Meeting</span>';
+                            break;
+                        case 'ruko' :
+                            return '<span class="badge badge-primary">Ruko</span>';
+                            break;
+                    }
+                })
                 ->addColumn('action', function ($row) {
                     return '
                             <a class="btn btn-success btn-sm btn-icon waves-effect waves-themed" href="' . route('room.edit', $row->uuid) . '"><i class="fal fa-edit"></i></a>
@@ -37,7 +60,7 @@ class RoomTypeController extends Controller
                 })
                 ->removeColumn('id')
                 ->removeColumn('uuid')
-                ->rawColumns(['action'])
+                ->rawColumns(['action','photo','room_type'])
                 ->make(true);
         }
 
@@ -63,53 +86,45 @@ class RoomTypeController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = [
-            'id_wisma' => 'required',
-            'room_type' => 'required',
-            'name' => 'required',
-            'price' => 'required',
-            'facility' => 'required',
-            'photo' => 'required',
-        ];
+            $rules = [
+                'id_wisma' => 'required',
+                'room_type' => 'required',
+                'name' => 'required',
+                'price' => 'required',
+                'facility' => 'required',
+                'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ];
 
-        $messages = [
-            '*.required' => 'Field tidak boleh kosong !',
-            '*.min' => 'Nama tidak boleh kurang dari 2 karakter !',
-        ];
+            $messages = [
+                '*.required' => 'Field tidak boleh kosong !',
+                '*.min' => 'Nama tidak boleh kurang dari 2 karakter !',
+            ];
 
-        $this->validate($request, $rules, $messages);
-        // dd($request->all());
+            $this->validate($request, $rules, $messages);
+            // dd($request->all());
 
-        $room = new TypeRoom();
-        $room->id_wisma = $request->id_wisma;
-        $room->room_type = $request->room_type;
-        $room->name = $request->name;
-        $room->price = $request->price;
-        $room->facility = $request->facility;
+            $price = $request->price;
+            $formattedprice = str_replace(',', '', $price);
 
-        if($request->hasfile('photo')){
-            $path = public_path().'/photo'.'/kamar'.'/';
-            if (!File::exists($path)) {
-                File::makeDirectory($path,0775,true,true);
+            $room = new TypeRoom();
+            $room->id_wisma = $request->id_wisma;
+            $room->room_type = $request->room_type;
+            $room->name = $request->name;
+            $room->price = $formattedprice;
+            $room->facility = $request->facility;
+            $room->photo = $request->photo;
+
+            if ($image = $request->file('photo')) {
+                $destinationPath = 'photo/';
+                $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+                $image->move($destinationPath, $profileImage);
+                $room->photo = "$profileImage";
             }
-            $file = $request->file('photo');
-            
 
-            for ($i=0; $i <count($file) ; $i++) { 
-                // dd($file[$i]->getClientOriginalExtension());
-                $filename[$i] = md5(uniqid(mt_rand(),true)).'.'.$file[$i]->getClientOriginalExtension();
-                $resize = Image::make($file[$i]);
-                $resize->resize(800,600, function($constrain){
-                    $constrain->aspectRatio();
-                })->save($path.$filename[$i]);
-                
-                $room->photo = $filename[$i];
-                $room->save();
-            }
-        }
+            $room->save();
 
-        toastr()->success('New Room Type Added', 'Success');
-        return redirect()->route('room.index');
+            toastr()->success('New Room Type Added', 'Success');
+            return redirect()->route('room.index');
     }
 
     /**
@@ -151,7 +166,6 @@ class RoomTypeController extends Controller
             'name' => 'required',
             'price' => 'required',
             'facility' => 'required',
-            'photo' => 'required',
         ];
 
         $messages = [
@@ -162,13 +176,33 @@ class RoomTypeController extends Controller
         $this->validate($request, $rules, $messages);
         // dd($request->all());
 
+        $price = $request->price;
+        $formattedprice = str_replace(',', '', $price);
+
         $room = TypeRoom::uuid($id);
+        if($request->hasFile('photo')){
+
+            // user intends to replace the current image for the category.  
+            // delete existing (if set)
+        
+            if($oldImage = $room->photo) {
+        
+                unlink(public_path('photo/') . $oldImage);
+            }
+        
+            // save the new image
+            $image = $request->file('photo');
+            $destinationPath = 'photo/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $room->photo = "$profileImage";
+        }
+
         $room->id_wisma = $request->id_wisma;
         $room->room_type = $request->room_type;
         $room->name = $request->name;
-        $room->price = $request->price;
+        $room->price = $formattedprice;
         $room->facility = $request->facility;
-        $room->photo = $request->photo;
 
         $room->save();
 
@@ -186,9 +220,13 @@ class RoomTypeController extends Controller
     public function destroy($id)
     {
         $room = TypeRoom::uuid($id);
+        $photo = public_path('photo/').$room->photo;
+        if(file_exists($photo)){
+            unlink($photo);
+        }
         $room->delete();
 
-        toastr()->success('Room Type Deleted', 'Success');
-        return redirect()->route('room.index');
+            toastr()->success('Room Type Deleted', 'Success');
+            return redirect()->route('room.index');
     }
 }

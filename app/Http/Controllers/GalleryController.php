@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Wisma;
+use App\Models\Gallery;
+use Illuminate\Support\Facades\Storage;
 
 use Auth;
 use DataTables;
@@ -14,7 +15,7 @@ use Image;
 use Response;
 use URL;
 
-class WismaController extends Controller
+class GalleryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,9 +24,9 @@ class WismaController extends Controller
      */
     public function index()
     {
-        $wisma = Wisma::all();
+        $gallery = Gallery::all();
         if (request()->ajax()) {
-            $data = Wisma::get();
+            $data = Gallery::get();
 
             return Datatables::of($data)
                 ->addIndexColumn()
@@ -35,8 +36,8 @@ class WismaController extends Controller
                 })
                 ->addColumn('action', function ($row) {
                     return '
-                            <a class="btn btn-success btn-sm btn-icon waves-effect waves-themed" href="' . route('wisma.edit', $row->uuid) . '"><i class="fal fa-edit"></i></a>
-                            <a class="btn btn-danger btn-sm btn-icon waves-effect waves-themed delete-btn" data-url="' . URL::route('wisma.destroy', $row->uuid) . '" data-id="' . $row->uuid . '" data-token="' . csrf_token() . '" data-toggle="modal" data-target="#modal-delete"><i class="fal fa-trash-alt"></i></a>';
+                            <a class="btn btn-success btn-sm btn-icon waves-effect waves-themed" href="' . route('gallery.edit', $row->uuid) . '"><i class="fal fa-edit"></i></a>
+                            <a class="btn btn-danger btn-sm btn-icon waves-effect waves-themed delete-btn" data-url="' . URL::route('gallery.destroy', $row->uuid) . '" data-id="' . $row->uuid . '" data-token="' . csrf_token() . '" data-toggle="modal" data-target="#modal-delete"><i class="fal fa-trash-alt"></i></a>';
                 })
                 ->removeColumn('id')
                 ->removeColumn('uuid')
@@ -44,8 +45,8 @@ class WismaController extends Controller
                 ->make(true);
         }
 
-        return view('wisma.index');
-    }   
+        return view('gallery.index');
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -54,7 +55,7 @@ class WismaController extends Controller
      */
     public function create()
     {
-        return view('wisma.create');
+        return view('gallery.create');
     }
 
     /**
@@ -65,38 +66,35 @@ class WismaController extends Controller
      */
     public function store(Request $request)
     {
-        // ddd($request);
         $rules = [
             'name' => 'required',
-            'address' => 'required',
-            'telephone' => 'required',
+            'keterangan' => 'required',
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
 
         $messages = [
             '*.required' => 'Field tidak boleh kosong !',
             '*.min' => 'Nama tidak boleh kurang dari 2 karakter !',
+            '*.image' => 'File harus berbentuk Photo !',
+            '*.mimes' => 'File harus berformat JPEG, PNG, JPG !',
         ];
 
         $this->validate($request, $rules, $messages);
         // dd($request->photo);
 
-        $wisma = new Wisma();
-        $wisma->name = $request->name;
-        $wisma->address = $request->address;
-        $wisma->telephone = $request->telephone;
-        $wisma->photo = $request->photo;
-
+        $input = $request->all();
+  
         if ($image = $request->file('photo')) {
             $destinationPath = 'photo/';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
-            $wisma->photo = "$profileImage";
+            $input['photo'] = "$profileImage";
         }
-        $wisma->save();
+    
+        Gallery::create($input);
 
-        toastr()->success('New Wisma Added', 'Success');
-        return redirect()->route('wisma.index');
+        toastr()->success('New Gallery Added', 'Success');
+        return redirect()->route('gallery.index');
     }
 
     /**
@@ -118,8 +116,8 @@ class WismaController extends Controller
      */
     public function edit($id)
     {
-        $wisma = Wisma::uuid($id);
-        return view('wisma.edit', compact('wisma'));
+        $gallery = Gallery::uuid($id);
+        return view('gallery.edit', compact('gallery'));
     }
 
     /**
@@ -133,8 +131,7 @@ class WismaController extends Controller
     {
         $rules = [
             'name' => 'required',
-            'address' => 'required',
-            'telephone' => 'required',
+            'keterangan' => 'required',
         ];
 
         $messages = [
@@ -143,15 +140,11 @@ class WismaController extends Controller
         ];
 
         $this->validate($request, $rules, $messages);
-        // dd($request->all());
-
-        $wisma = Wisma::uuid($id);
+        // dd($request->photo);
+        $gallery = Gallery::uuid($id);
         if($request->hasFile('photo')){
-
-            // user intends to replace the current image for the category.  
-            // delete existing (if set)
-        
-            if($oldImage = $wisma->photo) {
+            
+            if($oldImage = $gallery->photo) {
         
                 unlink(public_path('photo/') . $oldImage);
             }
@@ -161,15 +154,17 @@ class WismaController extends Controller
             $destinationPath = 'photo/';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
-            $wisma->photo = "$profileImage";
+            $gallery->photo = "$profileImage";
         }
-        $wisma->name = $request->name;
-        $wisma->address = $request->address;
-        $wisma->telephone = $request->telephone;
-        $wisma->save();
 
-        toastr()->success('Wisma Edited', 'Success');
-        return redirect()->route('wisma.index');
+        
+        $gallery->name = $request->name;
+        $gallery->keterangan = $request->keterangan;
+        
+        $gallery->save();
+
+        toastr()->success('Gallery Edited', 'Success');
+        return redirect()->route('gallery.index');
     }
 
     /**
@@ -180,14 +175,15 @@ class WismaController extends Controller
      */
     public function destroy($id)
     {
-        $wisma = Wisma::uuid($id);
-        $photo = public_path('photo/').$wisma->photo;
+        $gallery = Gallery::uuid($id);
+
+        $photo = public_path('photo/').$gallery->photo;
         if(file_exists($photo)){
             unlink($photo);
         }
-        $wisma->delete();
+        $gallery->delete();
 
-        toastr()->success('Wisma Deleted', 'Success');
-        return redirect()->route('wisma.index');
+        toastr()->success('Gallery Deleted', 'Success');
+        return redirect()->route('gallery.index');
     }
 }
