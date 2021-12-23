@@ -19,8 +19,11 @@
                                 sarana penginapan yang<br />berkualitas dengan harga<br />terjangkau.
                             </div>
                             <div class="subtitle">
-                                Homestead menyediakan sarana penginapan dan gedung -gedung dengan fasilitas yang
-                                baik, nyaman dengan harga yang terjangkau.
+                                @forelse ($about as $item)
+                                {{$item->keterangan}}
+                                @empty
+                                    <p>Tidak ada Keterangan</p>
+                                @endforelse
                             </div>
                         </div>
                         <div class="col-12 col-md-6" data-aos="fade-left" data-aos-delay="300">
@@ -76,35 +79,6 @@
                                     </h5>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="homestead-category">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-md-6" data-aos="fade-up-right" data-aos-delay="400">
-                    <div class="category-container">
-                        <img src="images/img-category-1.png" alt="" class="w-100 img-fluid">
-                        <div class="desc">
-                            <h5>WISMA KURNIA SEJAHTERA</h5>
-                            <a href="{{ route('wisma-kurnia') }}" class="link-homestead btn px-4">
-                                Lihat Selengkapnya
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6" data-aos="fade-up-left" data-aos-delay="500">
-                    <div class="category-container">
-                        <img src="images/img-category-2.png" alt="" class="w-100 img-fluid">
-                        <div class="desc">
-                            <h5>SPBU BATANGTORU</h5>
-                            <a href="{{ route('spbu-batangtoru') }}" class="link-homestead btn px-4">
-                                Lihat Selengkapnya
-                            </a>
                         </div>
                     </div>
                 </div>

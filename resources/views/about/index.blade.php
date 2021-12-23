@@ -23,6 +23,10 @@
                     About Us  <span class="fw-300"><i>List</i></span>
                 </h2>
                 <div class="panel-toolbar">
+                        <a class="nav-link active" href="{{route('about.create')}}"><i class="fal fa-plus-circle">
+                        </i>
+                        <span class="nav-link-text">Add New</span>
+                        </a>
                     <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip"
                         data-offset="0,10" data-original-title="Fullscreen"></button>
                 </div>

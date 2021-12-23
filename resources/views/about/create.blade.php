@@ -30,7 +30,7 @@
                     'needs-validation','novalidate','enctype' => 'multipart/form-data']) !!}
                     <div class="form-group col-md-10 mb-20">
                         {{ Form::label('keterangan','Keterangan',['class' => 'required form-label'])}}
-                        {{ Form::textarea('keterangan',null,['placeholder' => 'Keterangan','class' => 'form-control '.($errors->has('keterangan') ? 'is-invalid':''),'required', 'autocomplete' => 'off', 'rows' => '20', 'id' => 'mytextarea'])}}
+                        {{ Form::textarea('keterangan',null,['placeholder' => 'Keterangan','class' => 'form-control '.($errors->has('keterangan') ? 'is-invalid':''),'required', 'autocomplete' => 'off', 'rows' => '20'])}}
                         @if ($errors->has('keterangan'))
                         <div class="invalid-feedback">{{ $errors->first('keterangan') }}</div>
                         @endif

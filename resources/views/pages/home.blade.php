@@ -89,8 +89,8 @@
                         <div class="category-container">
                             <img src="{{ asset('photo/' . $type->photo) }}" alt="" class="w-100 img-fluid">
                             <div class="desc">
-                                <h5>{{ $type->name }}</h5>
-                                <a href="{{ route('wisma-kurnia') }}" class="link-homestead btn px-4">
+                                <h5 class="text-uppercase">{{ $type->name }}</h5>
+                                <a href="{{ route('wisma', $type->uuid) }}" class="link-homestead btn px-4">
                                     Lihat Selengkapnya
                                 </a>
                             </div>
@@ -128,36 +128,42 @@
                 </div>
             </div>
             <div class="row">
+                @forelse ($room as $item)
                 <div class="col-12 col-md-4 col-lg-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="component-products d-block">
                         <div class="product-thumbnail">
-                            <div class="product-img" style="background-image: url(images/wks-aula.png);">
+                            <div class="product-img" style="background-image: url('{{ asset('photo/' . $item->photo) }}');">
                             </div>
                         </div>
                         <div class="wisma-type-container">
                             <div class="row justify-content-center align-items-center">
                                 <div class="col">
-                                    <div class="product-text">Aula</div>
+                                    <div class="product-text">{{$item->name}}</div>
                                     <div class="tipe-wisma">
-                                        Wisma Kurnia Sejahtera
+                                        {{$item->wisma->name}}
                                     </div>
                                 </div>
                                 <div class="col text-right">
-                                    <div class="product-price">Rp 3.500.000/Hari</div>
+                                    <div class="product-price">{{"Rp " . number_format($item->price, 0, ",", ".")}}</div>
                                 </div>
                             </div>
                             <div class="fasilitas-wisma">
                                 <span>Fasilitas:</span>
-                                meja dan kursi, sound system, AC, proyektor, kamar rias, balkon, kamar mandi.
-                                Kapasitas ± 300 orang.
+                                {{$item->facility}}
                             </div>
-                            <a href="https://wa.me/+6281279916034" class="btn btn-wa btn-block">
+                            <a href="https://wa.me/{{$item->wisma->telephone}}" class="btn btn-wa btn-block">
                                 Pesan Sekarang
                             </a>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-4 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                @empty
+                    <div class="col-12 text-center">
+                        No Data
+                    </div>
+                @endforelse
+               
+                {{-- <div class="col-12 col-md-4 col-lg-4" data-aos="fade-up" data-aos-delay="200">
                     <div class="component-products d-block">
                         <div class="product-thumbnail">
                             <div class="product-img" style="background-image: url(images/wks-superior.png);">
@@ -296,7 +302,7 @@
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>

@@ -29,12 +29,6 @@
             <span class="nav-link-text">About Us</span>
         </a>
     </li>
-    <li>
-        <a href="{{route('sosmed.index')}}" title="Social Media" data-filter-tags="socialmedia">
-            <i class="fal fa-address-card"></i>
-            <span class="nav-link-text">Social Media</span>
-        </a>
-    </li>
     @isset($menu)
     @foreach ($menu as $parent_menu)
     <li class="">

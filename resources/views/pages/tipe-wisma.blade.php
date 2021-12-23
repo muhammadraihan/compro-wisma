@@ -10,28 +10,26 @@
         <div class="container">
             <div class="page-tipe-wisma">
                 <div class="row">
-                    <div class="col-12 col-md-6" data-aos="fade-up-right" data-aos-delay="200">
+                    @php
+                    $incrementType = 0
+                @endphp
+                @forelse ($wisma as $type)
+                    <div class="col-12 col-md-6" data-aos="fade-up-right" data-aos-delay="{{ $incrementType += 100 }}">
                         <div class="category-container">
-                            <img src="images/img-category-1.png" alt="" class="w-100 img-fluid">
+                            <img src="{{ asset('photo/' . $type->photo) }}" alt="" class="w-100 img-fluid">
                             <div class="desc">
-                                <h5>WISMA KURNIA SEJAHTERA</h5>
-                                <a href="wisma-kurnia.html" class="link-homestead btn px-4">
+                                <h5 class="text-uppercase">{{ $type->name }}</h5>
+                                <a href="{{ route('wisma', $type->uuid) }}" class="link-homestead btn px-4">
                                     Lihat Selengkapnya
                                 </a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6" data-aos="fade-up-left" data-aos-delay="250">
-                        <div class="category-container">
-                            <img src="images/img-category-2.png" alt="" class="w-100 img-fluid">
-                            <div class="desc">
-                                <h5>SPBU BATANGTORU</h5>
-                                <a href="spbu-batangtoru.html" class="link-homestead btn px-4">
-                                    Lihat Selengkapnya
-                                </a>
-                            </div>
-                        </div>
+                @empty
+                    <div class="col-12" data-aos="fade-up-right" data-aos-delay="100">
+                        No Type Was Found
                     </div>
+                @endforelse
                 </div>
             </div>
         </div>

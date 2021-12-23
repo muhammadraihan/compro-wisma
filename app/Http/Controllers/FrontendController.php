@@ -24,27 +24,34 @@ class FrontendController extends Controller
         $about = About::all();
         $room = TypeRoom::all();
 
-        return view('pages.home', compact( 'sosmed', 'room', 'wisma', 'about'));
+        return view('pages.home', compact('sosmed', 'room', 'wisma', 'about'));
     }
 
 
-    public function wisma()
+    public function wisma($id)
+    {
+        $wisma = Wisma::uuid($id);
+        $room = TypeRoom::all()->where('id_wisma', 'like', $wisma->uuid);
+        return view('pages.wisma', compact('wisma', 'room'));
+    }
+
+    public function tipeWisma()
     {
         $wisma = Wisma::all();
-        return view('pages.tipe-wisma');
+        return view('pages.tipe-wisma', compact('wisma'));
     }
 
     public function about()
     {
         $about = About::all();
-        return view('pages.about');
+        return view('pages.about', compact('about'));
     }
 
     public function kamar($id)
     {
         $getRoom = TypeRoom::uuid($id);
-        $room = TypeRoom::all()->where('id_wisma', 'like', $getRoom );
-        return view('pages.spbu-batangtoru', compact('getRoom, room'));
+        $room = TypeRoom::all()->where('id_wisma', 'like', $getRoom);
+        return view('pages.wisma', compact('getRoom, room'));
     }
 
     public function order($id)

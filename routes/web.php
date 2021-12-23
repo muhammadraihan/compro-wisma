@@ -14,20 +14,13 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-// Route::prefix('frontend')->name('frontend.')->group(function () {
-// Route::view('/home', 'frontend.home');
-// });
-
 Route::group(['prefix' => '/'], function () {
-    Route::view('/', 'FrontendController','pages.home') -> name('home');
-    Route::view('/about', 'pages.about') -> name('about');
-    Route::view('/tipe-wisma', 'pages.tipe-wisma') -> name('tipe-wisma');
-    Route::view('/wisma-kurnia', 'pages.wisma-kurnia') -> name('wisma-kurnia');
-    Route::view('/spbu-batangtoru', 'pages.spbu-batangtoru') -> name('spbu-batangtoru');
-    Route::view('/order', 'pages.order') -> name('order');
-    Route::get('/', 'FrontendController@index') -> name('home');
-    Route::get('/wisma', 'FrontendController@wisma')->name('wisma');
+    Route::view('/', 'FrontendController', 'pages.home')->name('home');
+    Route::view('/order', 'pages.order')->name('order');
+    Route::get('/', 'FrontendController@index')->name('home');
+    Route::get('/wisma/{uuid}', 'FrontendController@wisma')->name('wisma');
     Route::get('/about', 'FrontendController@about')->name('about');
+    Route::get('/tipe-wisma', 'FrontendController@tipeWisma')->name('tipe-wisma');
     Route::get('/kamar', 'FrontendController@kamar')->name('kamar');
     Route::get('/order', 'FrontendController@order')->name('order');
 });
