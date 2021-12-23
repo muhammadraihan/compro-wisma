@@ -28,8 +28,8 @@ Route::group(['prefix' => '/'], function () {
     Route::get('/', 'FrontendController@index') -> name('home');
     Route::get('/wisma', 'FrontendController@wisma')->name('wisma');
     Route::get('/about', 'FrontendController@about')->name('about');
-    Route::get('/kamar/{id}', 'FrontendController@kamar')->name('kamar');
-    Route::get('/order/{id}', 'FrontendController@order')->name('order');
+    Route::get('/kamar', 'FrontendController@kamar')->name('kamar');
+    Route::get('/order', 'FrontendController@order')->name('order');
 });
 
 Auth::routes(['register' => false]);

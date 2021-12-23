@@ -40,17 +40,17 @@ class FrontendController extends Controller
         return view('pages.about');
     }
 
-    public function kamar()
+    public function kamar($id)
     {
         $getRoom = TypeRoom::uuid($id);
         $room = TypeRoom::all()->where('id_wisma', 'like', $getRoom );
         return view('pages.spbu-batangtoru', compact('getRoom, room'));
     }
 
-    public function order()
+    public function order($id)
     {
         $telephone = Wisma::uuid($id);
-        $wismaSPBU = Wisma::all()->where('telephone', 'like' $telephone);
+        $wismaSPBU = Wisma::all()->where('telephone', 'like', $telephone);
         return view('pages.order', compact('telephone, wismaSPBU'));
     }
 }
