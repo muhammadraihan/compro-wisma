@@ -1,0 +1,51 @@
+.page-order {
+    margin-top: 100px;
+
+    .card {
+        margin-bottom: 20px;
+        transition: border 0.1s, transform 0.3s;
+    }
+
+    .card:hover {
+        border: 1px solid $primary-color;
+        -webkit-transform: translateY(-10px);
+        transform: translateY(-10px);
+        cursor: pointer;
+    }
+
+    .card .card-body h2 {
+        color: $primary-color;
+        font-family: $title;
+        font-weight: 500;
+        font-size: 24px;
+    }
+
+    .card-text {
+        color: grey;
+        font-family: $subtitle;
+        font-weight: 400;
+        font-size: 16px;
+    }
+
+    .card img:hover {
+        opacity: 0.6;
+    }
+
+    .card-p {
+        color: grey;
+        font-family: $subtitle;
+        font-weight: 400;
+        font-size: 16px;
+    }
+
+    .btn-homestead {
+        color: $white-color;
+        font-family: $subtitle;
+        background: $primary-color;
+        border: none;
+
+        &:hover {
+            border: none;
+        }
+    }
+}

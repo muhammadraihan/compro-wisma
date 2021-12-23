@@ -1,0 +1,62 @@
+.btn-signin {
+    background-color: $primary-color;
+}
+
+.navbar-store {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
+
+    @include media-breakpoint-down(md) {
+        background-color: #fff !important;
+    }
+
+    .nav-item {
+        &.active {
+            .nav-link {
+                font-family: $subtitle;
+                font-style: normal;
+                font-weight: 800;
+                font-size: 16px;
+                text-transform: uppercase;
+                color: $primary-color !important;
+            }
+        }
+
+        .nav-link {
+
+            font-family: $subtitle;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            text-transform: uppercase;
+            color: #000;
+
+            @include media-breakpoint-up(lg) {
+                margin-left: 10px;
+                margin-right: 18px;
+            }
+        }
+    }
+
+    .profile-picture {
+        max-height: 45px;
+    }
+
+    .card-badge {
+        display: inline-block;
+        min-width: 2em;
+        padding: 0.3em;
+        border-radius: 50%;
+        font-size: 10px;
+        text-align: center;
+        background: $primary-color;
+        color: $white-color;
+        margin-left: -10px;
+    }
+}
+
+.navbar-fixed-top.scrolled {
+    background-color: #fff !important;
+    transition: background-color 200ms linear;
+}

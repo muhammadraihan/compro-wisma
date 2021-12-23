@@ -1,0 +1,41 @@
+.grid-store {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-gap: 30px;
+
+    @include media-breakpoint-down(sm){
+        grid-template-columns: 1fr;
+    }
+}
+
+.store-grid-section {
+    margin-top: 30px;
+
+    .item-category {
+        background-color: #F4F4F4;
+        min-height: 60px;
+        width: 100%;
+        border-radius: 8px;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .icon-category {
+        margin-left: 16px;
+    }
+
+    .category-name {
+        margin-left: 12px;
+        font-size: 16px;
+        font-weight: 400;
+    }
+
+    .category-link {
+        text-decoration: none;
+        color: #373737;
+    }
+}
+
+.store-hot-items{
+    margin-top: 10px;
+}

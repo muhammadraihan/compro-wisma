@@ -1,0 +1,323 @@
+.pages-home {
+    h5 {
+        font-weight: 400;
+        margin-bottom: 15px;
+    }
+
+    .store-grid-section {
+        margin-top: 30px;
+    }
+
+    .store-hot-items {
+        margin-top: 30px;
+    }
+}
+
+.homestead-hero {
+
+    .img-hero {
+        @include media-breakpoint-down(sm) {
+            display: none;
+        }
+    }
+
+    .hero-title {
+        font-family: $subtitle;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        text-transform: uppercase;
+        color: #01A89E;
+        margin-bottom: 8px;
+    }
+
+    .hero-big-title {
+        font-family: $title;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+        text-transform: uppercase;
+        color: $black-color;
+        margin-bottom: 8px;
+
+        span {
+            color: $primary-color !important;
+        }
+    }
+
+    .hero-subtitle {
+        font-family: $subtitle;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 13px;
+        text-transform: capitalize;
+        color: $black-color;
+        margin-bottom: 16px;
+    }
+
+    .hero-description {
+        position: absolute;
+        bottom: 20px;
+        left: 30px;
+        padding: 20px;
+
+        @include media-breakpoint-down(sm) {
+            margin-top: 72px;
+            position: relative;
+            text-align: center;
+            bottom: 0;
+            left: 0;
+            padding: 0;
+        }
+    }
+
+    .btn-cta {
+        .btn-homestead-primary {
+            background: #01A89E;
+            box-shadow: 2px 3px 4px rgba(0, 0, 0, 0.25);
+            font-family: $subtitle;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 20px;
+            text-transform: uppercase;
+            color: #FFFFFF;
+        }
+    }
+}
+
+.homestead-about {
+    margin-top: 100px;
+
+    .little-title {
+        color: $primary-color;
+        // font-family: $subtitle;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 23px;
+        text-transform: capitalize;
+        margin-bottom: 12px;
+    }
+
+    .big-title {
+        font-family: "Playfair Display", sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 32px;
+        text-transform: uppercase;
+        color: $black-color;
+        margin-bottom: 12px;
+    }
+
+    .subtitle {
+        font-family: "Source Sans Pro", sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 20px;
+        color: #404040;
+
+        @include media-breakpoint-down(sm) {
+            margin-bottom: 20px;
+        }
+    }
+}
+
+.homestead-video-section {
+    margin-top: 72px;
+
+    .little-title {
+        font-family: $subtitle;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 20px;
+        text-transform: uppercase;
+        color: #01A89E;
+        margin-bottom: 8px;
+
+        @include media-breakpoint-down(sm) {
+            font-size: 14px;
+        }
+    }
+
+    .big-title {
+        font-family: $title;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 32px;
+        text-transform: uppercase;
+        color: $black-color;
+        margin-bottom: 16px;
+
+        @include media-breakpoint-down(sm) {
+            font-size: 20px;
+            line-height: 27px;
+        }
+    }
+
+    .btn-cta {
+
+        font-family: $subtitle;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 20px;
+        text-transform: uppercase;
+        color: #FFFFFF;
+
+        .btn-homestead-primary {
+            background-color: $primary-color;
+            border: none;
+            color: $white-color;
+        }
+    }
+
+    .video-title-container {
+        @include media-breakpoint-down(sm) {
+            text-align: center;
+
+            .little-title {
+                font-size: 14px;
+            }
+
+            .big-title {
+                font-size: 20px;
+            }
+        }
+    }
+}
+
+.homestead-features {
+    margin-top: 72px;
+    text-align: center;
+
+    .homestead-feature-title {
+        font-family: $title;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+        color: $black-color;
+        margin-bottom: 16px;
+
+        @include media-breakpoint-down(sm) {
+            font-size: 20px;
+        }
+    }
+
+    .homestead-feature-subtitle {
+        font-family: $subtitle;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        color: $black-color;
+
+        @include media-breakpoint-down(sm) {
+            font-size: 18px;
+        }
+    }
+}
+
+.homestead-category {
+    margin-top: 72px;
+
+    .category-container {
+        width: 100%;
+        min-height: 100%;
+        margin-bottom: 16px;
+    }
+
+    img {
+        filter: brightness(80%);
+    }
+
+    .desc {
+        position: absolute;
+        bottom: 16px;
+        left: 16px;
+        padding: 10px;
+        z-index: 2;
+
+        h5 {
+            font-family: $title;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 24px;
+            text-align: center;
+            color: $white-color;
+            margin-bottom: 12px;
+        }
+
+        .link-homestead {
+            font-family: $subtitle;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            text-transform: uppercase;
+            color: $white-color;
+            background-color: $primary-color;
+        }
+    }
+}
+
+.homestead-subscribe {
+    text-align: center;
+    margin-bottom: 72px;
+    margin-top: 70px;
+
+    .homestead-subscribe-title {
+        font-family: $title;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+        text-align: center;
+        text-transform: capitalize;
+        color: $black-color;
+        margin-bottom: 12px;
+    }
+
+    .homestead-subscribe-subtitle {
+        font-family: $subtitle;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 23px;
+        text-align: center;
+        text-transform: capitalize;
+
+        color: $black-color;
+    }
+
+    .btn-homestead {
+        background: #01A89E;
+        color: $white-color;
+    }
+}
+
+.homestead-features-about {
+    text-align: center;
+    margin-top: 72px;
+
+    .card {
+        margin-bottom: 16px;
+    }
+
+    h5 {
+        margin-top: 12px;
+        font-family: $subtitle;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        text-align: center;
+        text-transform: uppercase;
+        color: $black-color;
+    }
+}
+
+.page-tipe-wisma {
+    margin-top: 100px;
+}
