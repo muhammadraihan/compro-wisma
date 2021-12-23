@@ -26,6 +26,10 @@ Route::group(['prefix' => '/'], function () {
     Route::view('/spbu-batangtoru', 'pages.spbu-batangtoru') -> name('spbu-batangtoru');
     Route::view('/order', 'pages.order') -> name('order');
     Route::get('/', 'FrontendController@index') -> name('home');
+    Route::get('/wisma', 'FrontendController@wisma')->name('wisma');
+    Route::get('/about', 'FrontendController@about')->name('about');
+    Route::get('/kamar/{id}', 'FrontendController@kamar')->name('kamar');
+    Route::get('/order/{id}', 'FrontendController@order')->name('order');
 });
 
 Auth::routes(['register' => false]);
