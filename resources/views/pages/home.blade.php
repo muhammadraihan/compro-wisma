@@ -87,7 +87,7 @@
                 @forelse ($wisma as $type)
                     <div class="col-12 col-md-6" data-aos="fade-up-right" data-aos-delay="{{ $incrementType += 100 }}">
                         <div class="category-container">
-                            <img src="{{ Storage::url($type->photo) }}" alt="" class="w-100 img-fluid">
+                            <img src="{{ asset('photo/' . $type->photo) }}" alt="" class="w-100 img-fluid">
                             <div class="desc">
                                 <h5>{{ $type->name }}</h5>
                                 <a href="{{ route('wisma-kurnia') }}" class="link-homestead btn px-4">

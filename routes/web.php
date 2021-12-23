@@ -19,13 +19,13 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::group(['prefix' => '/'], function () {
-    Route::view('/', 'pages.home') -> name('home');
+    Route::view('/', 'FrontendController','pages.home') -> name('home');
     Route::view('/about', 'pages.about') -> name('about');
     Route::view('/tipe-wisma', 'pages.tipe-wisma') -> name('tipe-wisma');
     Route::view('/wisma-kurnia', 'pages.wisma-kurnia') -> name('wisma-kurnia');
     Route::view('/spbu-batangtoru', 'pages.spbu-batangtoru') -> name('spbu-batangtoru');
     Route::view('/order', 'pages.order') -> name('order');
-    Route::get('/', 'HomeController@index') -> name('home');
+    Route::get('/', 'FrontendController@index') -> name('home');
 });
 
 Auth::routes(['register' => false]);
