@@ -128,8 +128,11 @@
                 </div>
             </div>
             <div class="row">
+                @php
+                    $incrementType = 0
+                @endphp
                 @forelse ($room as $item)
-                <div class="col-12 col-md-4 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-12 col-md-4 col-lg-4" data-aos="fade-up" data-aos-delay="{{ $incrementType += 100 }}">
                     <div class="component-products d-block">
                         <div class="product-thumbnail">
                             <div class="product-img" style="background-image: url('{{ asset('photo/' . $item->photo) }}');">

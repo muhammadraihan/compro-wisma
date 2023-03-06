@@ -17,6 +17,9 @@
                 <li class="nav-item {{ request()->is('tipe-wisma') ? 'active' : ''}}">
                     <a href="{{ route('tipe-wisma') }}" class="nav-link">Tipe Wisma</a>
                 </li>
+                <li class="nav-item {{ request()->is('gallery') ? 'active' : ''}}">
+                    <a href="{{ route('gallery') }}" class="nav-link">Gallery</a>
+                </li>
                 <li class="nav-item">
                     <a href="{{ route('order') }}" class="btn btn-signin px-4 text-white nav-link">Pesan Wisma</a>
                 </li>

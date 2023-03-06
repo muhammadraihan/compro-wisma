@@ -27,7 +27,10 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-6" data-aos="fade-left" data-aos-delay="300">
-                            <img src="images/img-about.png" alt="Hero" class="w-100">
+                            <video controls preload="metadata" autoplay class="w-100">
+                                <source src="/img/video.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video> 
                         </div>
                     </div>
                 </div>

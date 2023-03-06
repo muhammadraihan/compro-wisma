@@ -22,7 +22,7 @@ Route::group(['prefix' => '/'], function () {
     Route::get('/about', 'FrontendController@about')->name('about');
     Route::get('/tipe-wisma', 'FrontendController@tipeWisma')->name('tipe-wisma');
     Route::get('/kamar', 'FrontendController@kamar')->name('kamar');
-    Route::get('/order', 'FrontendController@order')->name('order');
+    Route::get('/gallery', 'FrontendController@gallery')->name('gallery');
 });
 
 Auth::routes(['register' => false]);

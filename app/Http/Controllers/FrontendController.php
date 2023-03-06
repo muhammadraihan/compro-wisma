@@ -23,8 +23,9 @@ class FrontendController extends Controller
         $wisma = Wisma::all();
         $about = About::all();
         $room = TypeRoom::all();
+        $gallery = Gallery::all();
 
-        return view('pages.home', compact('sosmed', 'room', 'wisma', 'about'));
+        return view('pages.home', compact('sosmed', 'room', 'wisma', 'about', 'gallery'));
     }
 
 
@@ -59,5 +60,11 @@ class FrontendController extends Controller
         $telephone = Wisma::uuid($id);
         $wismaSPBU = Wisma::all()->where('telephone', 'like', $telephone);
         return view('pages.order', compact('telephone, wismaSPBU'));
+    }
+
+    public function gallery()
+    {
+        $gallery = Gallery::all();
+        return view('pages.gallery', compact('gallery'));
     }
 }
