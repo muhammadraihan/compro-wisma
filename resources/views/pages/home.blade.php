@@ -9,7 +9,7 @@
     <section class="homestead-hero">
         <div class="row">
             <div class="col-lg-12">
-                <img src="images/hero-homestead.png" alt="Hero Image" class="w-100 img-hero" data-aos="fade-left"
+                <img src="/images/hero-homestead.png" alt="Hero Image" class="w-100 img-hero" data-aos="fade-left"
                     data-aos-delay="200">
                 <div class="hero-description" data-aos="fade-right" data-aos-delay="200">
                     <div class="hero-title">
