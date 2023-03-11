@@ -9,7 +9,7 @@
     <section class="homestead-hero">
         <div class="row">
             <div class="col-lg-12">
-                <img src="images/hero-homestead.png" alt="Hero Image" class="w-100 img-hero" data-aos="fade-left"
+                <img src="/images/hero-homestead.png" alt="Hero Image" class="w-100 img-hero" data-aos="fade-left"
                     data-aos-delay="200">
                 <div class="hero-description" data-aos="fade-right" data-aos-delay="200">
                     <div class="hero-title">
@@ -36,7 +36,7 @@
             <div class="row d-flex justify-content-center align-items-center">
                 <div class="col-12 col-md-6">
                     <div class="video-section mb-2">
-                        <img src="images/video.png" alt="Video" class="w-100">
+                        <img src="/images/video.png" alt="Video" class="w-100">
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
