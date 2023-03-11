@@ -9,7 +9,7 @@
     <section class="homestead-hero">
         <div class="row">
             <div class="col-lg-12">
-                <img src="/images/hero-homestead.png" alt="Hero Image" class="w-100 img-hero" data-aos="fade-left"
+                <img src="images/hero-homestead.png" alt="Hero Image" class="w-100 img-hero" data-aos="fade-left"
                     data-aos-delay="200">
                 <div class="hero-description" data-aos="fade-right" data-aos-delay="200">
                     <div class="hero-title">
@@ -101,18 +101,6 @@
                         No Type Was Found
                     </div>
                 @endforelse
-                
-                {{-- <div class="col-12 col-md-6" data-aos="fade-up-left" data-aos-delay="250">
-                    <div class="category-container">
-                        <img src="images/img-category-2.png" alt="" class="w-100 img-fluid">
-                        <div class="desc">
-                            <h5>SPBU BATANGTORU</h5>
-                            <a href="{{ route('spbu-batangtoru') }}" class="link-homestead btn px-4">
-                                Lihat Selengkapnya
-                            </a>
-                        </div>
-                    </div>
-                </div> --}}
             </div>
         </div>
     </section>
@@ -165,147 +153,6 @@
                         No Data
                     </div>
                 @endforelse
-               
-                {{-- <div class="col-12 col-md-4 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="component-products d-block">
-                        <div class="product-thumbnail">
-                            <div class="product-img" style="background-image: url(images/wks-superior.png);">
-                            </div>
-                        </div>
-                        <div class="wisma-type-container">
-                            <div class="row justify-content-center align-items-center">
-                                <div class="col">
-                                    <div class="product-text">Kamar Superior</div>
-                                    <div class="tipe-wisma">
-                                        Wisma Kurnia Sejahtera
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="product-price">Rp 250.000/Malam</div>
-                                </div>
-                            </div>
-                            <div class="fasilitas-wisma">
-                                <span>Fasilitas:</span>
-                                twin bed, tv, lemari 2 pintu, kamar mandi, water heater, AC, meja rias, WI-FI.
-                            </div>
-                            <a href="https://wa.me/+6281279916034" class="btn btn-wa btn-block">
-                                Pesan Sekarang
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 col-lg-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="component-products d-block">
-                        <div class="product-thumbnail">
-                            <div class="product-img" style="background-image: url(images/wks-deluxe.jpg);">
-                            </div>
-                        </div>
-                        <div class="wisma-type-container">
-                            <div class="row justify-content-center align-items-center">
-                                <div class="col">
-                                    <div class="product-text">Kamar Deluxe</div>
-                                    <div class="tipe-wisma">
-                                        Wisma Kurnia Sejahtera
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="product-price">Rp 200.000/Malam</div>
-                                </div>
-                            </div>
-                            <div class="fasilitas-wisma">
-                                <span>Fasilitas:</span>
-                                twin bed, tv, lemari 2 pintu, kamar mandi, AC, meja rias, WI-FI.
-                            </div>
-                            <a href="https://wa.me/+6281279916034" class="btn btn-wa btn-block">
-                                Pesan Sekarang
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 col-lg-4" data-aos="fade-up" data-aos-delay="500">
-                    <div class="component-products d-block">
-                        <div class="product-thumbnail">
-                            <div class="product-img" style="background-image: url(images/wks-meeting.jpg);">
-                            </div>
-                        </div>
-                        <div class="wisma-type-container">
-                            <div class="row justify-content-center align-items-center">
-                                <div class="col">
-                                    <div class="product-text">Ruangan Meeting</div>
-                                    <div class="tipe-wisma">
-                                        Wisma Kurnia Sejahtera
-                                    </div>
-                                </div>
-                                <div class="col text-right">
-                                    <div class="product-price">Rp 2.000.000/Hari</div>
-                                </div>
-                            </div>
-                            <div class="fasilitas-wisma">
-                                <span>Fasilitas:</span>
-                                meja dan kursi, sound system, AC, proyektor, snack. Kapasitas 20 orang.
-                            </div>
-                            <a href="https://wa.me/+6281279916034" class="btn btn-wa btn-block">
-                                Pesan Sekarang
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 col-lg-4" data-aos="fade-up" data-aos-delay="400">
-                    <div class="component-products d-block">
-                        <div class="product-thumbnail">
-                            <div class="product-img" style="background-image: url(images/spbu-125.jpg);">
-                            </div>
-                        </div>
-                        <div class="wisma-type-container">
-                            <div class="row justify-content-center align-items-center">
-                                <div class="col">
-                                    <div class="product-text">Kamar 125</div>
-                                    <div class="tipe-wisma">
-                                        SPBU Batangtoru
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="product-price">Rp 125.000/Malam</div>
-                                </div>
-                            </div>
-                            <div class="fasilitas-wisma">
-                                <span>Fasilitas:</span>
-                                twin bed, kamar mandi, WI-FI.
-                            </div>
-                            <a href="https://wa.me/+62634000370467" class="btn btn-wa btn-block">
-                                Pesan Sekarang
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="component-products d-block">
-                        <div class="product-thumbnail">
-                            <div class="product-img" style="background-image: url(images/spbu-180.jpg);">
-                            </div>
-                        </div>
-                        <div class="wisma-type-container">
-                            <div class="row justify-content-center align-items-center">
-                                <div class="col">
-                                    <div class="product-text">Kamar 180</div>
-                                    <div class="tipe-wisma">
-                                        SPBU Batangtoru
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="product-price">Rp 180.000/Malam</div>
-                                </div>
-                            </div>
-                            <div class="fasilitas-wisma">
-                                <span>Fasilitas:</span>
-                                twin bed, tv, lemari 2 pintu, kamar mandi, wastafel, meja rias, WI-FI.
-                            </div>
-                            <a href="https://wa.me/+62634000370467" class="btn btn-wa btn-block">
-                                Pesan Sekarang
-                            </a>
-                        </div>
-                    </div>
-                </div> --}}
             </div>
         </div>
     </section>
